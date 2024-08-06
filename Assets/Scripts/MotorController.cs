@@ -219,8 +219,8 @@ public class MotorController : MonoBehaviour
         var angleDiff = SharedReward.player.transform.eulerAngles.y - PL_FB_Decimal;
 
         //print(SharedReward.player.transform.eulerAngles.y);
-        print("PL_FB : " + PL_FB_Decimal);
-        print("angle diff is : " + angleDiff);
+        //print("PL_FB : " + PL_FB_Decimal);
+        //print("angle diff is : " + angleDiff);
 
 
         if (angleDiff < 5 || angleDiff > 300)

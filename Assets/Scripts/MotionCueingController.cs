@@ -139,7 +139,7 @@ public class MotionCueingController : MonoBehaviour
         //if (SharedReward.playing && SharedReward.ring == 1f)
         //if (false)
         {
-            print("In new loop");
+            //print("In new loop");
             double speed_mag = Math.Sqrt(Math.Pow(ballSpeed, 2) + Math.Pow(xVelBall, 2));
             //print(speed_mag);
             if (speed_mag > 0.2f)
@@ -152,7 +152,7 @@ public class MotionCueingController : MonoBehaviour
             double final_speed = Math.Sqrt(Math.Pow(ballSpeed, 2) + Math.Pow(xVelBall, 2));
             prevSpeed = curSpeed;
             curSpeed = final_speed;
-            print("curSpeed" + final_speed);
+            //print("curSpeed" + final_speed);
 
             mcXVel = xVelBall;
             mcSpeed = ballSpeed;
@@ -237,7 +237,7 @@ public class MotionCueingController : MonoBehaviour
         }
         else
         {
-            print("In original loop");
+            //print("In original loop");
             if (ballSpeed > 0.2f)
             {
                 ballSpeed = 0.2f;
@@ -391,9 +391,9 @@ public class MotionCueingController : MonoBehaviour
 
                     accumulateAngle += yawVelR * Time.deltaTime;
 
-                    print("mc   angle -------------------------------- : " + accumulateAngle);
-                    print("ring angle -------------------------------- : " + ringSensor.dir);
-                    print("yaw vel calculated with ringSensor reading -------------------------------- : " + yawVelR);
+                    //print("mc   angle -------------------------------- : " + accumulateAngle);
+                    //print("ring angle -------------------------------- : " + ringSensor.dir);
+                    //print("yaw vel calculated with ringSensor reading -------------------------------- : " + yawVelR);
 
                     //yawVelR += (ringSensor.dir - accumulateAngle) / Time.deltaTime;
 

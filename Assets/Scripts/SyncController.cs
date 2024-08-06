@@ -37,10 +37,13 @@ public class SyncController : MonoBehaviour
         syncController = this;
 
         sync.set(portName, baudRate, ReadTimeout, QueueLength);
-        if (!keyboard)
-        {
-            sync.connect();
-        }
+        //if (!keyboard)
+        //{
+        //    sync.connect();
+        //}
+
+
+        sync.connect();
 
 
     }

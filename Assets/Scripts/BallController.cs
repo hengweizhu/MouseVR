@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using static RingSensor;
 using static RewardArena;
+using UnityEngine.SocialPlatforms.Impl;
 
 [DisallowMultipleComponent]
 public class BallController : MonoBehaviour
@@ -138,7 +139,7 @@ public class BallController : MonoBehaviour
 
         isReplay = (int)PlayerPrefs.GetFloat("IsReplay") == 1;
         //print(string.Format("is replay {0}, is keyboard {1}", isReplay, keyboard));
-
+        
         // calibration
         Zscale = PlayerPrefs.GetFloat("ZScale") == 0 ? 1 : PlayerPrefs.GetFloat("ZScale");
         Xscale = PlayerPrefs.GetFloat("XScale") == 0 ? 1 : PlayerPrefs.GetFloat("XScale");
@@ -222,7 +223,7 @@ public class BallController : MonoBehaviour
                 lastFrameRingRead = currentFrameRingRead;
                 currentFrameRingRead = ringSensor.dir;
 
-
+                
 
 
                 if (isReplay & replayIdx < replayMaxIdx)
@@ -233,7 +234,7 @@ public class BallController : MonoBehaviour
                     deltaZ = replayZ[replayIdx];
                     deltaX = replayX[replayIdx];
                     deltaYaw = replayYaw[replayIdx];
-
+                    Debug.Log("Here" + deltaYaw);
 
                     //if (deltaZ > 0.015f)
                     //{

@@ -63,7 +63,7 @@ public class AccelerometerController : MonoBehaviour
         try
         {
             reading = accel.readQueue();
-
+            PlayerPrefs.SetString("Accel State", "Connected");
             // Debug.Log("accelController reading    : " + reading);
 
             //if (reading != null)
@@ -84,7 +84,7 @@ public class AccelerometerController : MonoBehaviour
             //    //accel = new wrmhl();
             //    accel.set(portName, baudRate, ReadTimeout, QueueLength);
             //    accel.connect();
-                
+
             //}
 
 
@@ -96,6 +96,9 @@ public class AccelerometerController : MonoBehaviour
             //Debug.Log("data received: " + line[0] + "  " + line[1] + "  " + line[2] + "  " + line[3] + "  " + line[4] + "  " + line[5]);
             Debug.Log("exception in accelerometer------------------------");
             Debug.LogException(e1, this);
+
+            PlayerPrefs.SetString("Accel State", "Disconnected");
+
             // Debug.Log("accelerometer disconnected at " + Time.realtimeSinceStartup);
 
 

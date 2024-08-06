@@ -43,6 +43,7 @@ using static AccelerometerController;
 using static MotionCueingController;
 using static MotorController;
 using static LabJackController;
+using static Phototransistor;
 using static RingSensor;
 using static LickDetector;
 using UnityEngine.SceneManagement;
@@ -790,7 +791,7 @@ public class RewardArena : MonoBehaviour
         // string firstLine = "TrialNum,TrialTime,Phase,OnOff,PosX,PosY,PosZ,RotX,RotY,RotZ, zVel,xVel,yawVel,FFX,FFY,FFZ,FFV,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,TTL,Tx,Ty,Tz,Rx,Ry,Rz,head_dir,MotorPosition";
 
         //string firstLine = "TrialNum,TrialTime,Phase,OnOff,PosX,PosY,PosZ,RotX,RotY,RotZ,zVel,xVel,yawVel,FFX,FFY,FFZ,FFV,distToFF,score,rewardTime,timedout,TTL,head_dir,DistalOnOff,DistalRotation,balldZ,balldX,balldYaw,surge,lateral,heave,roll,pitch,yaw,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,MotorPosition";
-        string firstLine = "TrialNum,TrialTime,Phase,OnOff,PosX,PosY,PosZ,RotX,RotY,RotZ,zVel,xVel,yawVel,FFX,FFY,FFZ,FFV,distToFF,score,rewardTime,timedout,TTL,head_dir,DistalOnOff,DistalRotation,balldZ,balldX,balldYaw,surge,lateral,heave,roll,pitch,yaw,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,YawSensor";
+        string firstLine = "TrialNum,TrialTime,Phase,OnOff,PosX,PosY,PosZ,RotX,RotY,RotZ,zVel,xVel,yawVel,FFX,FFY,FFZ,FFV,distToFF,score,rewardTime,timedout,TTL,head_dir,DistalOnOff,DistalRotation,balldZ,balldX,balldYaw,surge,lateral,heave,roll,pitch,yaw,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,YawSensor,Light";
 
 
         File.AppendAllText(contPath, firstLine + "\n");
@@ -1162,7 +1163,7 @@ public class RewardArena : MonoBehaviour
                     var delayedX = lastFrameData[1];
                     var delayedYaw = lastFrameData[2];
 
-                    print("yaw vel of the player, read from  MC       -------------------------------- : " + (float)motionCueingController.yawVelR);
+                    //print("yaw vel of the player, read from  MC       -------------------------------- : " + (float)motionCueingController.yawVelR);
 
                     //if (ring == 1f)
                     //{
@@ -1476,7 +1477,7 @@ public class RewardArena : MonoBehaviour
             if (activeMC)
                 {
 
-                    sb.Append(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26},{27},{28},{29}",
+                    sb.Append(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26},{27},{28},{29},{30}",
                     trialNum,
                     Time.realtimeSinceStartup - programT0,
                     (int)currPhase,
@@ -1506,7 +1507,8 @@ public class RewardArena : MonoBehaviour
                     motionCueingController.motionCueing.frame.pitch,
                     motionCueingController.motionCueing.frame.yaw,
                     accelController.IsConnected ? accelController.reading : "0,0,0,0,0,0",
-                    motorController.PL_FB_Decimal
+                    motorController.PL_FB_Decimal,
+                    phototransistor.lightLevel
 
                     ) + "\n");;;
                 //string.Join(",", labJackController.ValueAIN)) + "\n");
@@ -1514,7 +1516,7 @@ public class RewardArena : MonoBehaviour
 
             } else
                 {
-                    sb.Append(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23}",
+                    sb.Append(string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24}",
                     trialNum,
                     Time.realtimeSinceStartup - programT0,
                     (int)currPhase,
@@ -1538,7 +1540,8 @@ public class RewardArena : MonoBehaviour
                     Ball.ballDeltaX,
                     Ball.ballDeltaYaw,
                     accelController.IsConnected ? accelController.reading : "0,0,0,0,0,0",
-                    motorController.PL_FB_Decimal
+                    motorController.PL_FB_Decimal,
+                    phototransistor.lightLevel
                     ) + "\n");
                     //string.Join(",", labJackController.ValueAIN)) + "\n");
                 }

@@ -34,18 +34,29 @@ public class JuiceController : MonoBehaviour
         _serialPort.RtsEnable = true;
         // Timeout after 0.5 seconds.
         _serialPort.ReadTimeout = 500;
-        if (!keyboardmode)
+        //if (!keyboardmode)
+        //{
+        //    try
+        //    {
+        //        _serialPort.Open();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Debug.LogError(e);
+        //        IsConnected = false;
+        //    }
+        //}
+
+        try
         {
-            try
-            {
-                _serialPort.Open();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-                IsConnected = false;
-            }
+            _serialPort.Open();
         }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            IsConnected = false;
+        }
+
     }
 
     private void OnDisable()
@@ -70,7 +81,7 @@ public class JuiceController : MonoBehaviour
         if (keyboard.spaceKey.wasReleasedThisFrame && giveJuice)
         {
             giveJuice = false;
-            GiveJuice(60);
+            GiveJuice(50);
 
         }
     }
@@ -99,10 +110,14 @@ public class JuiceController : MonoBehaviour
             toSend = string.Format("{0}\n", time);
         }
 
-        if (!keyboardmode)
-        {
-            _serialPort.Write(toSend);
-        }
+        //if (!keyboardmode)
+        //{
+        //    _serialPort.Write(toSend);
+        //}
+
+
+        _serialPort.Write(toSend);
+      
 
 
 
